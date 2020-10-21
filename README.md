@@ -22,3 +22,9 @@ This repository should be used to dockerize a Kali Linux environment.
 - [uniscan](https://tools.kali.org/web-applications/uniscan)
 - [gobuster](https://tools.kali.org/web-applications/gobuster)
 - [cewl](https://tools.kali.org/password-attacks/cewl)
+
+# Installation and Execution
+
+`docker build -t kali-docker .`
+
+`docker run -it -d --rm kali-docker`
