@@ -16,7 +16,11 @@ RUN apt -y install exploitdb \
                    nmap      \
                    net-tools \
                    vim       \
-                   openvpn
+                   openvpn   \
+                   curl      \
+                   wget      \
+                   python    \
+                   python3  
 
 # USED AS DEFAULT LPORT FOR REVERSE SHELLS
 EXPOSE 4444
