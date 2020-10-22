@@ -10,13 +10,13 @@ This repository should be used to dockerize a Kali Linux environment.
 # Tools
 
 - [metasploit-framework](https://tools.kali.org/exploitation-tools/metasploit-framework)
-- [nmap](https://tools.kali.org/information-gathering/nmap)
+- [nmap](https://github.com/DennisFeldbusch/CheatSheet#nmap)
 
-- [exploitdb/searchsploit](https://tools.kali.org/exploitation-tools/exploitdb)
+- [exploitdb/searchsploit](https://github.com/DennisFeldbusch/CheatSheet#searchsploit)
 - man-db
 - [dirb](https://tools.kali.org/web-applications/dirb)
 - [nikto](https://tools.kali.org/information-gathering/nikto)
 - [wpscan](https://tools.kali.org/web-applications/wpscan)
 - [uniscan](https://tools.kali.org/web-applications/uniscan)
-- [gobuster](https://tools.kali.org/web-applications/gobuster)
-- [cewl](https://tools.kali.org/password-attacks/cewl)
+- [gobuster](https://github.com/DennisFeldbusch/CheatSheet#gobuster)
+- [cewl](https://github.com/DennisFeldbusch/CheatSheet#cewl)
