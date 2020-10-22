@@ -6,17 +6,16 @@ RUN apt -y update && apt-get -y dist-upgrade && apt-get -y autoremove && apt-get
 
 # INSTALL USEFUL TOOLS
 # ADD MORE TOOLS BELOW
-RUN apt -y install exploitdb
-                   man-db
-                   dirb
-                   nikto
-                   wpscan
-                   uniscan
-                   gobuster
-                   cewl
-                   nmap
+RUN apt -y install exploitdb \
+                   dirb      \
+                   nikto     \
+                   wpscan    \
+                   uniscan   \
+                   gobuster  \
+                   cewl      \
+                   nmap      \
                    net-tools
-                   
+
 # USED AS DEFAULT LPORT FOR REVERSE SHELLS
 EXPOSE 4444
 
