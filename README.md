@@ -5,7 +5,7 @@ This repository should be used to dockerize a Kali Linux environment.
 
 `docker build -t kali-docker .`
 
-`docker run -it --rm kali-docker`
+`docker run --name kali -it --rm kali-docker`
 
 # Tools
 
