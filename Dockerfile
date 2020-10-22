@@ -1,15 +1,26 @@
+# SELECT IMAGE
 FROM kalilinux/kali-rolling
 
-# do APT update
+# UPDATE AND UPGRADE
 RUN apt -y update && apt-get -y dist-upgrade && apt-get -y autoremove && apt-get clean
-# install Kali Linux "Top 10" metapackage and a couple "nice to have" tools
-RUN apt -y install exploitdb man-db dirb nikto wpscan uniscan gobuster cewl nmap burpsuite wireshark
 
-# initialize Metasploit databse
-#RUN service postgresql start && msfdb init && service postgresql stop
+# INSTALL USEFUL TOOLS
+# ADD MORE TOOLS BELOW
+RUN apt -y install exploitdb
+                   man-db
+                   dirb
+                   nikto
+                   wpscan
+                   uniscan
+                   gobuster
+                   cewl
+                   nmap
 
-# default LPORT for reverse shell
+# USED AS DEFAULT LPORT FOR REVERSE SHELLS
 EXPOSE 4444
 
+# SET WORKDIR
 WORKDIR /root
+
+# DEFINE STARTINGPOINT
 CMD ["/bin/bash"]
