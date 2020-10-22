@@ -14,7 +14,9 @@ RUN apt -y install exploitdb \
                    gobuster  \
                    cewl      \
                    nmap      \
-                   net-tools
+                   net-tools \
+                   vim       \
+                   openvpn
 
 # USED AS DEFAULT LPORT FOR REVERSE SHELLS
 EXPOSE 4444
