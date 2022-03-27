@@ -1,32 +1,42 @@
-# SELECT IMAGE
 FROM kalilinux/kali-rolling
 
-# UPDATE AND UPGRADE
-RUN apt -y update && apt-get -y dist-upgrade && apt-get -y autoremove && apt-get clean
+RUN touch /etc/apt/apt.conf.d/99verify-peer.conf \
+&& echo >>/etc/apt/apt.conf.d/99verify-peer.conf "Acquire { https::Verify-Peer false }"
 
-# INSTALL USEFUL TOOLS
-# ADD MORE TOOLS BELOW
+# Update
+RUN apt update
+
+# Install
+RUN apt install -y \
+    apt-transport-https \
+    ca-certificates \
+    gnupg-agent \
+    software-properties-common
+
+# install vim, git, zsh
+RUN apt install -y \
+    vim \
+    git \
+    zsh
+
 RUN apt -y install exploitdb \
+                   ncat \
+                   hydra \
+                   wordlists \
                    dirb      \
                    nikto     \
                    wpscan    \
-                   uniscan   \
                    gobuster  \
                    cewl      \
                    nmap      \
                    net-tools \
-                   vim       \
                    openvpn   \
                    curl      \
                    wget      \
-                   python    \
                    python3  
 
-# USED AS DEFAULT LPORT FOR REVERSE SHELLS
 EXPOSE 4444
 
-# SET WORKDIR
-WORKDIR /root
+WORKDIR /work
 
-# DEFINE STARTINGPOINT
-CMD ["/bin/bash"]
+ENTRYPOINT ["/bin/zsh"]
