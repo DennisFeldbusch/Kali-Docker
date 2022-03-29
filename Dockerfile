@@ -17,9 +17,12 @@ RUN apt install -y \
 RUN apt install -y \
     vim \
     git \
+    man \
+    locate \
     zsh
 
 RUN apt -y install exploitdb \
+                   seclists \
                    ncat \
                    hydra \
                    wordlists \
@@ -35,8 +38,17 @@ RUN apt -y install exploitdb \
                    wget      \
                    python3  
 
+# instal webrick for wpscan
+RUN gem install webrick
+
+#install searchsploit
+RUN git clone --depth 1 https://github.com/offensive-security/exploitdb.git /opt/exploitdb && \
+    sed 's|path_array+=(.*)|path_array+=("/opt/exploitdb")|g' /opt/exploitdb/.searchsploit_rc > ~/.searchsploit_rc && \
+    ln -sf /opt/exploitdb/searchsploit /usr/local/bin/searchsploit
+
 EXPOSE 4444
 
 WORKDIR /work
 
 ENTRYPOINT ["/bin/zsh"]
+
