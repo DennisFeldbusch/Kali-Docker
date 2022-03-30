@@ -1,11 +1,21 @@
 # About
 This repository should be used to dockerize a Kali Linux environment.
 
-# Installation and Execution
+# Requirements
 
-`docker build -t kali-docker .`
+1. `docker --version`
+2. `chmod +x start.sh`
+3. `chmod +x connect.sh`
+4. move ovpn file in current directory
 
-`docker run --name kali -it --rm kali-docker`
+# Usage
+
+`./start.sh <filename of ovpn file WITHOUT extension>`
+
+## Example
+
+`./start.sh htb`
+
 
 # Tools
 
