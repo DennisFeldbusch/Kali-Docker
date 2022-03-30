@@ -30,4 +30,4 @@ echo ''
 echo -e "Built in ${duration} Seconds"
 
 echo 'Start running docker:'
-docker run --name kali -it --rm kali-docker
+docker run --cap-add=NET_ADMIN --device=/dev/net/tun --sysctl net.ipv6.conf.all.disable_ipv6=0 -p 3128:3128 -v $(pwd):/work --name kali -it --rm kali-docker ${1}
