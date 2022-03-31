@@ -22,6 +22,7 @@ RUN apt install -y \
     iputils-ping \
     squid \
     apache2 \
+    tmux \
     zsh
 
 RUN apt -y install exploitdb \
@@ -39,7 +40,9 @@ RUN apt -y install exploitdb \
                    openvpn   \
                    curl      \
                    wget      \
-                   python3  
+                   python3   \
+                   python3-pip
+
 
 # instal webrick for wpscan
 RUN gem install webrick
@@ -58,6 +61,10 @@ RUN \
 COPY htb.ovpn /etc/openvpn/
 COPY thm.ovpn /etc/openvpn/
 COPY connect.sh /bin/
+
+COPY .tmux.conf /root/.tmux.conf
+
+RUN touch ~/.hushlogin
 
 EXPOSE 4444
 

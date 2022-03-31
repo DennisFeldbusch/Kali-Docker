@@ -10,5 +10,6 @@ service apache2 start
 echo ${1}
 openvpn --config /etc/openvpn/${1}.ovpn --daemon --writepid /var/run/openvpn.pid --cd /etc/openvpn
 
-/bin/zsh
+tmux 
+
 
