@@ -20,9 +20,6 @@ RUN apt install -y \
     man \
     locate \
     iputils-ping \
-    squid \
-    apache2 \
-    tmux \
     zsh
 
 RUN apt -y install exploitdb \
@@ -52,17 +49,7 @@ RUN git clone --depth 1 https://github.com/offensive-security/exploitdb.git /opt
     sed 's|path_array+=(.*)|path_array+=("/opt/exploitdb")|g' /opt/exploitdb/.searchsploit_rc > ~/.searchsploit_rc && \
     ln -sf /opt/exploitdb/searchsploit /usr/local/bin/searchsploit
 
-RUN \
-    sed -i 's/It works!/It works form container!/g' /var/www/html/index.html && \
-# Squid configuration
-    echo "http_access allow all" >> /etc/squid/squid.conf && \
-    sed -i 's/http_access deny all/#http_access deny all/g' /etc/squid/squid.conf
-
-COPY htb.ovpn /etc/openvpn/
-COPY thm.ovpn /etc/openvpn/
-COPY connect.sh /bin/
-
-COPY .tmux.conf /root/.tmux.conf
+#COPY .tmux.conf /root/.tmux.conf
 
 RUN touch ~/.hushlogin
 
@@ -70,6 +57,4 @@ EXPOSE 4444
 
 WORKDIR /work
 
-ENTRYPOINT ["/bin/connect.sh"]
-
-
+ENTRYPOINT ["/bin/zsh"]
