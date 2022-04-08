@@ -20,7 +20,7 @@ echo ' '
 echo ' '
 echo 'Start building docker image:'
 start=$SECONDS
-docker build -q -t kali-docker .
+docker build -t kali-docker .
 duration=$(( SECONDS - start ))
 
 echo ''

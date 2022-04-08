@@ -56,7 +56,8 @@ RUN \
     sed -i 's/It works!/It works form container!/g' /var/www/html/index.html && \
 # Squid configuration
     echo "http_access allow all" >> /etc/squid/squid.conf && \
-    sed -i 's/http_access deny all/#http_access deny all/g' /etc/squid/squid.conf
+    sed -i 's/http_access deny all/#http_access deny all/g' /etc/squid/squid.conf && \
+    sed -i 's/# hosts_file \/etc\/hosts/hosts_file \/etc\/hosts/g' /etc/squid/squid.conf
 
 COPY htb.ovpn /etc/openvpn/
 COPY thm.ovpn /etc/openvpn/
