@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 #start squid proxy
 service squid start
