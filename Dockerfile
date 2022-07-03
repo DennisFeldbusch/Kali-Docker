@@ -43,6 +43,10 @@ RUN apt -y install exploitdb \
     python3   \
     python3-pip
 
+# HTB Install
+RUN apt -y install redis-tools \
+    dirbuster \
+    golang-go
 
 # instal webrick for wpscan
 RUN gem install webrick
