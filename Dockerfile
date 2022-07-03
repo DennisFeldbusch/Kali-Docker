@@ -1,7 +1,7 @@
 FROM kalilinux/kali-rolling
 
 RUN touch /etc/apt/apt.conf.d/99verify-peer.conf \
-&& echo >>/etc/apt/apt.conf.d/99verify-peer.conf "Acquire { https::Verify-Peer false }"
+    && echo >>/etc/apt/apt.conf.d/99verify-peer.conf "Acquire { https::Verify-Peer false }"
 
 # Update
 RUN apt update
@@ -26,22 +26,22 @@ RUN apt install -y \
     zsh
 
 RUN apt -y install exploitdb \
-                   seclists \
-                   ncat \
-                   hydra \
-                   wordlists \
-                   dirb      \
-                   nikto     \
-                   wpscan    \
-                   gobuster  \
-                   cewl      \
-                   nmap      \
-                   net-tools \
-                   openvpn   \
-                   curl      \
-                   wget      \
-                   python3   \
-                   python3-pip
+    seclists \
+    ncat \
+    hydra \
+    wordlists \
+    dirb      \
+    nikto     \
+    wpscan    \
+    gobuster  \
+    cewl      \
+    nmap      \
+    net-tools \
+    openvpn   \
+    curl      \
+    wget      \
+    python3   \
+    python3-pip
 
 
 # instal webrick for wpscan
@@ -54,14 +54,15 @@ RUN git clone --depth 1 https://github.com/offensive-security/exploitdb.git /opt
 
 RUN \
     sed -i 's/It works!/It works form container!/g' /var/www/html/index.html && \
-# Squid configuration
+    # Squid configuration
     echo "http_access allow all" >> /etc/squid/squid.conf && \
     sed -i 's/http_access deny all/#http_access deny all/g' /etc/squid/squid.conf && \
     sed -i 's/# hosts_file \/etc\/hosts/hosts_file \/etc\/hosts/g' /etc/squid/squid.conf && \
     sed -i 's/prompt_symbol=../prompt_symbol=@/g' ~/.zshrc
 
-COPY htb.ovpn /etc/openvpn/
-COPY thm.ovpn /etc/openvpn/
+# COPY htb.ovpn /etc/openvpn/
+# COPY thm.ovpn /etc/openvpn/
+COPY *.ovpn /etc/openvpn/
 COPY connect.sh /bin/
 
 COPY .tmux.conf /root/.tmux.conf
