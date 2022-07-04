@@ -23,7 +23,8 @@ RUN apt install -y \
     squid \
     apache2 \
     tmux \
-    zsh
+    zsh \
+    nano
 
 RUN apt -y install exploitdb \
     seclists \
@@ -41,15 +42,22 @@ RUN apt -y install exploitdb \
     curl      \
     wget      \
     python3   \
-    python3-pip
+    python3-pip \
+    python2
 
 # HTB Install
 RUN apt -y install redis-tools \
     dirbuster \
-    golang-go
+    golang-go \
+    default-mysql-client \
+    john \
+    evil-winrm \
+    smbclient
 
+# RUN apt -y install kali-linux-default
 # instal webrick for wpscan
 RUN gem install webrick
+RUN python3 -m pip install impacket
 
 #install searchsploit
 RUN git clone --depth 1 https://github.com/offensive-security/exploitdb.git /opt/exploitdb && \
@@ -60,9 +68,13 @@ RUN \
     sed -i 's/It works!/It works form container!/g' /var/www/html/index.html && \
     # Squid configuration
     echo "http_access allow all" >> /etc/squid/squid.conf && \
+    echo "cache deny all" >> /etc/squid/squid.conf && \
     sed -i 's/http_access deny all/#http_access deny all/g' /etc/squid/squid.conf && \
     sed -i 's/# hosts_file \/etc\/hosts/hosts_file \/etc\/hosts/g' /etc/squid/squid.conf && \
     sed -i 's/prompt_symbol=../prompt_symbol=@/g' ~/.zshrc
+
+# ZSH auto-suggestions
+# RUN git clone https://github.com/zsh-users/zsh-autosuggestions /usr/share/zsh-autosuggestions 
 
 # COPY htb.ovpn /etc/openvpn/
 # COPY thm.ovpn /etc/openvpn/
