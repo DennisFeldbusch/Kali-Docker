@@ -24,7 +24,8 @@ RUN apt install -y \
     apache2 \
     tmux \
     zsh \
-    nano
+    nano \
+    snap
 
 RUN apt -y install exploitdb \
     seclists \
@@ -52,7 +53,9 @@ RUN apt -y install redis-tools \
     default-mysql-client \
     john \
     evil-winrm \
-    smbclient
+    smbclient \
+    hashcat \
+    hashid
 
 # RUN apt -y install kali-linux-default
 # instal webrick for wpscan
@@ -73,17 +76,15 @@ RUN \
     sed -i 's/# hosts_file \/etc\/hosts/hosts_file \/etc\/hosts/g' /etc/squid/squid.conf && \
     sed -i 's/prompt_symbol=../prompt_symbol=@/g' ~/.zshrc
 
-# ZSH auto-suggestions
-# RUN git clone https://github.com/zsh-users/zsh-autosuggestions /usr/share/zsh-autosuggestions 
-
-# COPY htb.ovpn /etc/openvpn/
-# COPY thm.ovpn /etc/openvpn/
+RUN gzip -d /usr/share/wordlists/rockyou.txt.gz
 COPY *.ovpn /etc/openvpn/
 COPY connect.sh /bin/
-
+COPY squid.conf /etc/squid/squid.conf
 COPY .tmux.conf /root/.tmux.conf
 
 RUN touch ~/.hushlogin
+
+
 
 EXPOSE 4444
 
