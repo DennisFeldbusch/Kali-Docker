@@ -1,6 +1,7 @@
 #!/bin/bash
 
 GREEN='\033[0;32m'
+RED='\033[0;31m'
 LBLUE='\033[1;34m'
 NC='\033[0m' # No Color
 echo -e "${LBLUE}"
@@ -20,7 +21,13 @@ echo ' '
 echo ' '
 echo 'Start building docker image:'
 start=$SECONDS
-docker build -t kali-docker .
+# docker build -t kali-docker .
+if docker build -t kali-docker .; then
+    echo ''
+else
+    echo -e "${RED}Building failed :(${NC}"
+    exit 1
+fi
 duration=$(( SECONDS - start ))
 
 echo ''

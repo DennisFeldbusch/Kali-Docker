@@ -1,2 +1,3 @@
 *.ovpn
 /work/**
+.DS_Store
