@@ -1,5 +1,10 @@
 # About
+
 This repository should be used to dockerize a Kali Linux environment.
+
+# Copy on Mac Host
+
+Hold FN while selecting
 
 # Requirements
 
@@ -15,7 +20,6 @@ This repository should be used to dockerize a Kali Linux environment.
 ## Example
 
 `./start.sh htb`
-
 
 # Tools
 
