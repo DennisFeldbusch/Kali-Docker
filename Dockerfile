@@ -4,7 +4,7 @@ RUN touch /etc/apt/apt.conf.d/99verify-peer.conf \
     && echo >>/etc/apt/apt.conf.d/99verify-peer.conf "Acquire { https::Verify-Peer false }"
 
 # Update
-RUN apt update
+RUN apt update && apt upgrade -y
 
 # Install
 RUN apt install -y \
@@ -63,7 +63,7 @@ RUN gem install webrick
 RUN python3 -m pip install impacket
 
 #install searchsploit
-RUN git clone --depth 1 https://github.com/offensive-security/exploitdb.git /opt/exploitdb && \
+RUN git clone --depth 1 https://gitlab.com/exploit-database/exploitdb.git /opt/exploitdb && \
     sed 's|path_array+=(.*)|path_array+=("/opt/exploitdb")|g' /opt/exploitdb/.searchsploit_rc > ~/.searchsploit_rc && \
     ln -sf /opt/exploitdb/searchsploit /usr/local/bin/searchsploit
 
@@ -76,6 +76,9 @@ RUN \
     sed -i 's/# hosts_file \/etc\/hosts/hosts_file \/etc\/hosts/g' /etc/squid/squid.conf && \
     sed -i 's/prompt_symbol=../prompt_symbol=@/g' ~/.zshrc
 
+# Pip install
+RUN pip3.11 install pycryptodome
+
 RUN gzip -d /usr/share/wordlists/rockyou.txt.gz
 COPY *.ovpn /etc/openvpn/
 COPY connect.sh /bin/
@@ -84,7 +87,8 @@ COPY .tmux.conf /root/.tmux.conf
 
 RUN touch ~/.hushlogin
 
-
+# Alias for python3.11
+RUN echo "alias python=python3.11" >> ~/.zshrc
 
 EXPOSE 4444
 
