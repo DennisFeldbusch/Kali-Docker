@@ -8,7 +8,8 @@ service apache2 start
 
 #connect to ovpn background
 echo ${1}
-openvpn --config /etc/openvpn/${1}.ovpn --daemon --writepid /var/run/openvpn.pid --cd /etc/openvpn
+if [ -z ${1+x} ]; then echo "[INFO] No opvn config to Start provided"; else openvpn --config /etc/openvpn/${1}.ovpn --daemon --writepid /var/run/openvpn.pid --cd /etc/openvpn; fi
+
 
 tmux 
 
