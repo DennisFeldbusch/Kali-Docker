@@ -24,7 +24,6 @@ RUN apt install -y \
     apache2 \
     tmux \
     zsh \
-    nano \
     snap
 
 RUN apt -y install exploitdb \
